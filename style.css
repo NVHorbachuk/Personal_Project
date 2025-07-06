@@ -1,232 +1,173 @@
-html {
-  background: #100a1c;
-  background-image:
-    radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0,0,0,0) 100%),
-    radial-gradient(60% 50% ellipse at center bottom, #261226 0%, #100a1c 100%);
-  background-attachment: fixed;
-  color: #6cacc5;
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
+/* Загальні стилі */
 body {
-  color: #6cacc5;
-  font: 300 18px/1.6 "Source Sans Pro",sans-serif;
-  margin: 0;
-  padding: 5em 0 2em;
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(circle at 20% 20%, #0f0f2f, #000);
+  color: #14716b;
   text-align: center;
+  margin: 40px;
 }
 
 h1 {
-  font-weight: 1000;
-  margin: 0;
+  font-size: 2.5em;
+  color: #00ffe0;
+  text-shadow: 0 0 5px #00ffe0, 0 0 15px #00b3b3;
 }
 
-/* Gradient text only on Webkit */
 .warning {
-  background: -webkit-linear-gradient(45deg,  #c97874 10%, #463042 90%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: #8c5059;
-  font-weight: 400;
-  margin: 0 auto 6em;
-  max-width: 9em;
+  color: #ff4081;
+  font-style: italic;
+  margin-bottom: 20px;
+  text-shadow: 0 0 5px #ff4081;
 }
 
+/* Калькулятор */
 .calculator {
-  font-size: 18px;
-  margin: 0 auto;
-  width: 10em;
-  
-  &::before,
-  &::after {
-    content: " ";
-    display: table;
-  }
-  
-  &::after {
-    clear: both;
-  }
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 12px;
+  justify-content: center;
+  margin: auto;
+  background: rgba(20, 20, 40, 0.8);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px #00ffff80, 0 0 60px #00ffff40 inset;
+  max-width: 400px;
+  backdrop-filter: blur(6px);
 }
 
-/* Calculator after dividing by zero */
-.broken {
-  animation: broken 2s;
-  transform: translate3d(0,-2000px,0);
-  opacity: 0;
+.cosmic-panel {
+  animation: fadeInUp 1s ease-out;
 }
 
+/* Дисплей калькулятора */
 .viewer {
-  color: #c97874;
-  float: left;
-  line-height: 3em;
+  grid-column: span 4;
+  background: #000;
+  color: #00ffcc;
+  font-size: 2.5em;
+  padding: 20px;
   text-align: right;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 7.5em;
-  height: 3em;
+  border: 2px solid #00ffe0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00ffe0 inset;
 }
 
+/* Кнопки */
 button {
-  border: 0;
-  background: rgba(42,50,113, .28);
-  color: #6cacc5;
+  padding: 20px;
+  font-size: 1.3em;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  float: left;
-  font: inherit;
-  margin: 0.25em;
-  width: 2em;
-  height: 2em;
-  transition: all 0.5s;
-  
-  &:hover {
-    background: #201e40;
-  }
-  
-  &:focus {
-    outline: 0; // Better check accessibility
-
-    /* The value fade-ins that appear */
-    &::after {
-      animation: zoom 1s;
-      animation-iteration-count: 1;
-      animation-fill-mode: both; // Fix Firefox from firing animations only once
-      content: attr(data-num);
-      cursor: default;
-      font-size: 100px;
-      position: absolute;
-           top: 1.5em;
-           left: 50%;
-      text-align: center;
-      margin-left: -24px;
-      opacity: 0;
-      width: 48px;    
-    }
-  }
+  color: #fff;
+  background: linear-gradient(145deg, #222a, #000a);
+  box-shadow: 0 0 8px #00ffff55, 0 0 12px #00ffff22 inset;
+  transition: transform 0.1s, box-shadow 0.3s;
 }
 
-/* Same as above, modified for operators */
-.ops:focus::after {
-  content: attr(data-ops);
-  margin-left: -210px;
-  width: 420px;
+button:hover {
+  transform: scale(1.05);
+  animation: pulse-glow 1s infinite;
 }
 
-/* Same as above, modified for result */
-.equals:focus::after {
-  content: attr(data-result);
-  margin-left: -300px;
-  width: 600px;
+/* Окремі стилі кнопок */
+.clear {
+  background: #ff1744;
+  box-shadow: 0 0 8px #ff1744aa, 0 0 12px #ff174455 inset;
 }
 
-/* Reset button */
+.ops {
+  background: #2979ff;
+  box-shadow: 0 0 8px #2979ffaa, 0 0 12px #2979ff55 inset;
+}
 
+.equals {
+  background: #00e676;
+  box-shadow: 0 0 8px #00e676aa, 0 0 12px #00e67655 inset;
+}
+
+/* Кнопка Reset Universe */
 .reset {
-  background: rgba(201,120,116,.28);
-  color:#c97874;
-  font-weight: 400;
-  margin-left: -77px;
-  padding: 0.5em 1em;
-  position: absolute;
-    top: -20em;
-    left: 50%;
-  width: auto;
-  height: auto;
+  display: none;
+  margin-top: 30px;
+  font-size: 1.1em;
+  color: #fff;
+  background: linear-gradient(90deg, #8e2de2, #4a00e0);
+  padding: 12px 25px;
   text-decoration: none;
-  
-  &:hover {
-    background: #c97874;
-    color: #100a1c;    
-  }
-  
-  /* When button is revealed */
-  &.show {
-    top: 20em;
-    animation: fadein 4s;
-  }
+  border-radius: 12px;
+  box-shadow: 0 0 12px #8e2de2aa, 0 0 24px #4a00e088 inset;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
-/* Animations */
-
-/* Values that appear onclick */
-@keyframes zoom {
-  0% { 
-    transform: scale(.2); 
-    opacity: 1;
-  }
-  
-  70% { 
-    transform: scale(1); 
-  }
-  
-  100% { 
-    opacity: 0;
-  }
+.reset:hover {
+  background: linear-gradient(90deg, #a4508b, #5f0a87);
+  box-shadow: 0 0 16px #ff00cc, 0 0 30px #333 inset;
 }
 
-/* Division by zero animation */
-@keyframes broken {
+.reset.show {
+  display: inline-block;
+  animation: blink 1.2s infinite;
+}
+
+/* === Анімації === */
+
+/* Плавна появ/
+@keyframes fadeInUp {
   0% {
-    transform: translate3d(0,0,0);
-    opacity: 1;
-  }
-
-  5% {
-    transform: rotate(5deg);
-  }
-
-  15% {
-    transform: rotate(-5deg);
-  }
-
-  20% {
-    transform: rotate(5deg);
-  }
-
-  25% {
-    transform: rotate(-5deg);
-  }
-
-  50% {
-    transform: rotate(45deg);
-  }
-
-  70% {
-    transform: translate3d(0,2000px,0);
-    opacity: 1;
-  }
-
-  75% {
     opacity: 0;
+    transform: translateY(40px);
   }
-
-  100% {
-    transform: translate3d(0,-2000px,0);
-  }
-}
-
-/* Reset button fadein */
-@keyframes fadein {
-  0% {
-    top: 20em;
-    opacity: 0;
-  }
-  
-  50% {
-    opacity: 0;
-  }
-  
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (min-width: 420px) {
-  .calculator {
-    width: 12em;
+/* Пульсація при наведенні */
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px #00ffff55, 0 0 10px #00ffff22 inset;
   }
-  .viewer {
-    width: 8.5em;
+  50% {
+    box-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff55 inset;
   }
-  button {
-    margin: 0.5em;
+  100% {
+    box-shadow: 0 0 5px #00ffff55, 0 0 10px #00ffff22 inset;
   }
+}
+
+/* Глітч дисплея (кольори) */
+@keyframes colorGlitch {
+  0%   { transform: skew(0deg); color: #00ffcc; }
+  20%  { transform: skew(5deg); color: #ff00cc; }
+  40%  { transform: skew(-5deg); color: #00ffff; }
+  60%  { transform: skew(3deg); color: #ff0066; }
+  80%  { transform: skew(-2deg); color: #00ffcc; }
+  100% { transform: skew(0deg); color: #00ffcc; }
+}
+
+.broken .viewer {
+  animation: colorGlitch 0.4s infinite;
+}
+
+/* Тряска всього калькулятора */
+@keyframes shake {
+  0%   { transform: translate(0); }
+  25%  { transform: translateX(-2px) rotate(-0.5deg); }
+  50%  { transform: translateX(2px) rotate(0.5deg); }
+  75%  { transform: translateX(-1px) rotate(-0.5deg); }
+  100% { transform: translate(0); }
+}
+
+.broken {
+  animation: shake 0.2s infinite;
+}
+
+/* Миготіння кнопки Reset Universe */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
 }
