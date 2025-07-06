@@ -71,7 +71,7 @@
       if (isNaN(resultNum)) {
         resultNum = "Error";
       } else {
-        resultNum = "Look at what you've done";
+        resultNum = "Подивись правила ділення";
         calculator.classList.add("broken");
         resetBtn.classList.add("show");
       }
