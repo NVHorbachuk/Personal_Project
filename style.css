@@ -119,7 +119,7 @@ button:hover {
 
 /* === Анімації === */
 
-/* Плавна поява */
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -131,7 +131,7 @@ button:hover {
   }
 }
 
-/* Пульсація при наведенні */
+/* Пульсація */
 @keyframes pulse-glow {
   0% {
     box-shadow: 0 0 5px #00ffff55, 0 0 10px #00ffff22 inset;
@@ -144,7 +144,7 @@ button:hover {
   }
 }
 
-/* Глітч дисплея (кольори) */
+/* Кольори */
 @keyframes colorGlitch {
   0%   { transform: skew(0deg); color: #00ffcc; }
   20%  { transform: skew(5deg); color: #ff00cc; }
@@ -158,7 +158,7 @@ button:hover {
   animation: colorGlitch 0.4s infinite;
 }
 
-/* Тряска всього калькулятора */
+/* При помилці */
 @keyframes shake {
   0%   { transform: translate(0); }
   25%  { transform: translateX(-2px) rotate(-0.5deg); }
@@ -171,7 +171,7 @@ button:hover {
   animation: shake 0.2s infinite;
 }
 
-/* Миготіння кнопки Reset Universe */
+/* Миготіння кнопки оновлення */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.2; }
